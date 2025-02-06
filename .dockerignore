@@ -1,0 +1,6 @@
+.env
+__pycache__
+url_cache_dir/
+.gitignore
+.git/
+.venv/
