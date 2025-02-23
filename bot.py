@@ -33,8 +33,7 @@ async def play(ctx):
             print(f'Player error: {error}')
         stream_manager.close()
 
-    # stream_manager.open_files('intro_converted.wav', 'loop_converted.wav')
-    await stream_manager.open_urls('http://localhost:8000/intro_converted.wav', 'http://localhost:8000/loop_converted.wav')
+    stream_manager.open_files('intro_converted.wav', 'loop_converted.wav')
     source = BGMPlayer(stream_manager.get_intro_stream(), stream_manager.get_loop_stream())
     ctx.voice_client.play(source, after=cleanup)
     await ctx.send('Now playing')

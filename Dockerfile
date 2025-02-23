@@ -5,7 +5,6 @@ WORKDIR /app
 RUN python -m venv /venv && \
     pip install --upgrade pip && \
     pip install -r requirements.txt
-CMD ["python", "bot.py"]
 
 # TODO: Fix dependencies copy
 # FROM python:3.13-alpine
@@ -14,4 +13,4 @@ CMD ["python", "bot.py"]
 # RUN . /venv/bin/activate
 # WORKDIR /app
 # COPY . .
-# CMD ["python", "bot.py"]
+CMD ["python", "bot.py"]
