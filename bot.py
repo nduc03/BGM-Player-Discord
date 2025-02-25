@@ -48,5 +48,9 @@ async def stop(ctx):
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
-
-client.run(os.getenv('TOKEN'))
+try:
+    client.run(os.getenv('TOKEN'))
+except Exception: # wait for 10 seconds before restart container when crash
+    import time, sys
+    time.sleep(10)
+    sys.exit(1)
