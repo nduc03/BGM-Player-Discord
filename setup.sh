@@ -1,4 +1,4 @@
-#!/bin/bash
+git pull
 podman build -t dis-bgm:latest .
 podman create --name dis-bgm --env-file .env dis-bgm:latest
 podman generate systemd --name --restart-policy=always dis-bgm > ~/.config/systemd/user/dis-bgm.service

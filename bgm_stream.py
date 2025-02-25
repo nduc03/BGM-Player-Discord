@@ -4,7 +4,7 @@ import url_cache
 from discord.player import AudioSource
 # from discord.opus import Encoder as OpusEncoder
 
-FRAME_SIZE = 3840 # bytes
+FRAME_SIZE = 3840 # bytes
 
 class BGMStreamManager:
     def __init__(self) -> None:
