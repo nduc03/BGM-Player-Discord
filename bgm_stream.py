@@ -2,7 +2,9 @@ import io
 import url_cache
 
 from discord.player import AudioSource
-from discord.opus import Encoder as OpusEncoder
+# from discord.opus import Encoder as OpusEncoder
+
+FRAME_SIZE = 3840 # bytes
 
 class BGMStreamManager:
     def __init__(self) -> None:
@@ -63,15 +65,15 @@ class BGMPlayer(AudioSource):
 
     def read(self) -> bytes:
         if self.is_intro:
-            intro_read = self.intro_stream.read(OpusEncoder.FRAME_SIZE)
-            if  0 < len(intro_read) < OpusEncoder.FRAME_SIZE:
+            intro_read = self.intro_stream.read(FRAME_SIZE)
+            if  0 < len(intro_read) < FRAME_SIZE:
                 self.is_intro = False
                 self.loop_stream.seek(0)
-                intro_read += self.loop_stream.read(OpusEncoder.FRAME_SIZE - len(intro_read))
+                intro_read += self.loop_stream.read(FRAME_SIZE - len(intro_read))
             return intro_read
 
-        loop_read = self.loop_stream.read(OpusEncoder.FRAME_SIZE)
-        if  0 < len(loop_read) < OpusEncoder.FRAME_SIZE:
+        loop_read = self.loop_stream.read(FRAME_SIZE)
+        if  0 < len(loop_read) < FRAME_SIZE:
             self.loop_stream.seek(0)
-            loop_read += self.loop_stream.read(OpusEncoder.FRAME_SIZE - len(loop_read))
+            loop_read += self.loop_stream.read(FRAME_SIZE - len(loop_read))
         return loop_read
